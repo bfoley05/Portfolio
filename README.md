@@ -1,4 +1,4 @@
-# Brandon Foley - Space Portfolio
+# Brandon Foley - Portfolio
 
 A modern, interactive React portfolio website
 
