@@ -1,0 +1,76 @@
+.space-scene {
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.space-scene-header {
+  max-width: 1400px;
+  margin: 0 auto 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.space-scene-header h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: var(--space-cyan);
+  margin: 0.2rem 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--space-cyan);
+  border-radius: 999px;
+  color: var(--space-cyan);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+.subtitle {
+  color: var(--space-white);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.hint {
+  color: var(--space-white);
+  opacity: 0.6;
+  font-size: 0.95rem;
+}
+
+.space-scene-canvas {
+  width: 100%;
+  height: 520px;
+  border: 1px solid rgba(0, 188, 212, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 188, 212, 0.15);
+  background: radial-gradient(ellipse at top, rgba(0, 188, 212, 0.08), transparent 60%),
+              radial-gradient(ellipse at bottom, rgba(123, 31, 162, 0.08), transparent 60%),
+              #050810;
+}
+
+@media (max-width: 768px) {
+  .space-scene {
+    padding: 3rem 1.25rem;
+  }
+
+  .space-scene-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hint {
+    font-size: 0.85rem;
+  }
+
+  .space-scene-canvas {
+    height: 420px;
+  }
+}
+

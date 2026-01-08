@@ -1,0 +1,138 @@
+.contact {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  z-index: 2;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.contact-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-icons {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 150px;
+  height: 150px;
+  background: rgba(26, 35, 126, 0.3);
+  border: 2px solid rgba(0, 188, 212, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--space-cyan);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(0, 188, 212, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+  border-radius: 50%;
+}
+
+.contact-icon:hover::before {
+  width: 200px;
+  height: 200px;
+}
+
+.contact-icon:hover {
+  border-color: var(--space-cyan);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.5);
+}
+
+.contact-icon ion-icon {
+  font-size: 3rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.contact-icon:hover ion-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.contact-icon span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-icon.linkedin:hover {
+  color: #0077b5;
+  border-color: #0077b5;
+}
+
+.contact-icon.github:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.contact-icon.email:hover {
+  color: #ffd700;
+  border-color: #ffd700;
+}
+
+.footer {
+  margin-top: 6rem;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(0, 188, 212, 0.3);
+}
+
+.footer p {
+  color: var(--space-white);
+  opacity: 0.7;
+  margin: 0.5rem 0;
+}
+
+.footer-subtitle {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .contact-icons {
+    gap: 2rem;
+  }
+
+  .contact-icon {
+    width: 120px;
+    height: 120px;
+    padding: 1.5rem;
+  }
+
+  .contact-icon ion-icon {
+    font-size: 2.5rem;
+  }
+}
+

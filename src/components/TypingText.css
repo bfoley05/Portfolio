@@ -1,0 +1,11 @@
+.typing-text {
+  display: inline-block;
+}
+
+.typing-cursor {
+  display: inline-block;
+  color: var(--space-cyan);
+  font-weight: 300;
+  margin-left: 2px;
+}
+

@@ -1,0 +1,64 @@
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #050810 0%, #0a0e27 50%, #050810 100%);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--space-light-blue);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--space-cyan);
+}
+
+.hero-section-container {
+  position: relative;
+}
+
+.hero-3d-object-container {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  pointer-events: none;
+  width: 300px;
+  height: 300px;
+}
+
+@media (max-width: 1200px) {
+  .hero-3d-object-container {
+    width: 250px;
+    height: 250px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 968px) {
+  .hero-3d-object-container {
+    position: relative;
+    margin: 0 auto;
+    transform: none;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+  }
+}

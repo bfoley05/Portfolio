@@ -1,0 +1,130 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: radial-gradient(ellipse at center, rgba(26, 35, 126, 0.3) 0%, transparent 70%);
+  background-size: 200% 200%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.title-line {
+  display: block;
+  color: var(--space-white);
+  text-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.title-line.highlight {
+  color: var(--space-cyan);
+  text-shadow: 0 0 30px rgba(0, 188, 212, 0.8);
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(0, 188, 212, 0.8), 0 0 40px rgba(0, 188, 212, 0.6);
+  }
+}
+
+.hero-subtitle {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--space-white);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.hero-description {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  color: var(--space-white);
+  opacity: 0.8;
+}
+
+.hero-description p {
+  margin: 0.5rem 0;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow {
+  width: 30px;
+  height: 30px;
+  border-right: 3px solid var(--space-cyan);
+  border-bottom: 3px solid var(--space-cyan);
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(0, 188, 212, 0.5), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(255, 215, 0, 0.5), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.5), transparent);
+  background-size: 200% 200%;
+  animation: particleMove 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes particleMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
