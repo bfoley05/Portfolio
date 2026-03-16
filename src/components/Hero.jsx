@@ -99,7 +99,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
-            Software Engineer | Raytheon / Collins Aerospace
+            Software Engineer | Sony Interactive Entertainment
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
