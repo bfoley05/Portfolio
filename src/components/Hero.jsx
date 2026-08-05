@@ -1,119 +1,65 @@
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { Suspense, lazy } from 'react'
 import './Hero.css'
 
+// Code-split the WebGL stack (three/drei/postprocessing) into its own chunk so
+// it doesn't block first paint of the headline.
+const Hero3D = lazy(() => import('./Hero3D'))
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] }
+  }
+}
+
 const Hero = () => {
-  const heroRef = useRef(null)
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const hero = heroRef.current
-      if (!hero) return
-
-      const { clientX, clientY } = e
-      const { innerWidth, innerHeight } = window
-
-      const xPercent = (clientX / innerWidth) * 100
-      const yPercent = (clientY / innerHeight) * 100
-
-      hero.style.backgroundPosition = `${xPercent}% ${yPercent}%`
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  }
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
-
   return (
-    <section id="hero" className="hero" ref={heroRef}>
-      <motion.div 
-        className="hero-content"
+    <section id="hero" className="hero">
+      <div className="hero-canvas-layer" aria-hidden="true">
+        <Suspense fallback={<div className="hero-canvas-fallback" />}>
+          <Hero3D />
+        </Suspense>
+      </div>
+
+      <motion.div
+        className="hero-content grid-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.h1 className="hero-title" variants={itemVariants}>
-          <motion.span 
-            className="title-line"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            Crafting Digital
-          </motion.span>
-          <motion.span 
-            className="title-line highlight"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            Innovation
-          </motion.span>
-        </motion.h1>
-        <motion.p 
-          className="hero-subtitle"
-          variants={textVariants}
-        >
-          A Digital Portfolio by Brandon Foley
-        </motion.p>
-        <motion.div 
-          className="hero-description"
-          variants={textVariants}
-        >
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-          >
-            Software Engineer | Sony Interactive Entertainment
+        <div className="hero-copy">
+          <motion.h1 className="hero-title" variants={itemVariants}>
+            <span className="title-line">Crafting Digital</span>
+            <span className="title-line title-line-outline">Innovation</span>
+          </motion.h1>
+
+          <motion.p className="hero-subtitle" variants={itemVariants}>
+            A Digital Portfolio by Brandon Foley
           </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
-          >
-            Exploring the Frontiers of Technology
-          </motion.p>
+        </div>
+
+        <motion.div className="hero-meta" variants={itemVariants}>
+          <p>Software Engineer | Sony Interactive Entertainment</p>
         </motion.div>
       </motion.div>
-      <div className="hero-particles"></div>
+
+      <div className="hero-scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <span className="hero-scroll-line" />
+      </div>
     </section>
   )
 }
 
 export default Hero
-

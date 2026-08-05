@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(180deg, #050810 0%, #0a0e27 50%, #050810 100%);
+  background: var(--bg);
 }
 
 /* Smooth scroll behavior */
@@ -16,49 +16,62 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--space-darker);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--space-light-blue);
+  background: var(--bg-elevated);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--space-cyan);
+  background: var(--text-muted);
 }
 
+/* The pinned hero sits beneath the incoming About section so About can
+   rise through it during the handoff. */
 .hero-section-container {
   position: relative;
+  z-index: 1;
 }
 
-.hero-3d-object-container {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
+/* Opaque so the hero is progressively covered during the handoff instead of
+   showing through behind the About copy. */
+.about-stage {
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--accent);
+  cursor: pointer;
+  opacity: 0;
   pointer-events: none;
-  width: 300px;
-  height: 300px;
+  transition: opacity 0.25s ease;
 }
 
-@media (max-width: 1200px) {
-  .hero-3d-object-container {
-    width: 250px;
-    height: 250px;
-    right: 10px;
-  }
+.scroll-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-@media (max-width: 968px) {
-  .hero-3d-object-container {
-    position: relative;
-    margin: 0 auto;
-    transform: none;
-    top: 0;
-    right: 0;
-    width: 200px;
-    height: 200px;
-  }
+.scroll-to-top:hover {
+  border-color: var(--accent);
+}
+
+.scroll-to-top ion-icon {
+  font-size: 1.25rem;
 }
