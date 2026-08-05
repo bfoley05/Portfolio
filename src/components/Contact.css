@@ -1,138 +1,118 @@
 .contact {
   position: relative;
-  min-height: 100vh;
-  padding: 8rem 2rem 4rem;
+  padding: 10rem var(--gutter) 0;
   z-index: 2;
 }
 
-.contact-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 50vh;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
+.contact-eyebrow {
+  margin-bottom: 3.5rem;
 }
 
-.contact-content.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.contact-icons {
-  display: flex;
-  gap: 3rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.contact-icon {
+.contact-links {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 150px;
-  height: 150px;
-  background: rgba(26, 35, 126, 0.3);
-  border: 2px solid rgba(0, 188, 212, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  text-decoration: none;
-  color: var(--space-cyan);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  gap: 2.5rem;
 }
 
-.contact-icon::before {
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: fit-content;
+  max-width: 100%;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-name {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  transition: color 0.3s ease;
+}
+
+.contact-name::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(0, 188, 212, 0.3) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: all 0.5s ease;
-  border-radius: 50%;
+  left: 0;
+  bottom: 0.05em;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.contact-icon:hover::before {
-  width: 200px;
-  height: 200px;
+.contact-link:hover .contact-name {
+  color: var(--accent);
 }
 
-.contact-icon:hover {
-  border-color: var(--space-cyan);
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.5);
-}
-
-.contact-icon ion-icon {
-  font-size: 3rem;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease;
-}
-
-.contact-icon:hover ion-icon {
-  transform: scale(1.2) rotate(5deg);
-}
-
-.contact-icon span {
-  font-size: 1.1rem;
-  font-weight: 600;
-  position: relative;
-  z-index: 1;
-}
-
-.contact-icon.linkedin:hover {
-  color: #0077b5;
-  border-color: #0077b5;
-}
-
-.contact-icon.github:hover {
-  color: #ffffff;
-  border-color: #ffffff;
-}
-
-.contact-icon.email:hover {
-  color: #ffd700;
-  border-color: #ffd700;
+.contact-link:hover .contact-name::after {
+  transform: scaleX(1);
 }
 
 .footer {
-  margin-top: 6rem;
-  padding: 2rem;
-  text-align: center;
-  border-top: 1px solid rgba(0, 188, 212, 0.3);
+  margin-top: 8rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .footer p {
-  color: var(--space-white);
-  opacity: 0.7;
-  margin: 0.5rem 0;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
-.footer-subtitle {
-  font-size: 0.9rem;
-  font-style: italic;
+.footer-tagline {
+  text-transform: none;
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 768px) {
-  .contact-icons {
+  .contact {
+    padding: 6rem var(--gutter) 0;
+  }
+
+  .contact-links {
     gap: 2rem;
   }
 
-  .contact-icon {
-    width: 120px;
-    height: 120px;
-    padding: 1.5rem;
+  .footer {
+    margin-top: 5rem;
   }
 
-  .contact-icon ion-icon {
-    font-size: 2.5rem;
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .contact-name::after {
+    transition: none;
+  }
+}

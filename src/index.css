@@ -5,23 +5,92 @@
 }
 
 :root {
-  --space-dark: #0a0e27;
-  --space-darker: #050810;
-  --space-blue: #1a237e;
-  --space-light-blue: #3f51b5;
-  --space-cyan: #00bcd4;
-  --space-purple: #7b1fa2;
-  --space-gold: #ffd700;
-  --space-white: #e0e0e0;
-  --space-gray: #424242;
+  --bg: #0b0b0b;
+  --bg-elevated: #131316;
+  --text: #f5f5f3;
+  --text-muted: #8a8a90;
+  --accent: #8b5cf6;
+  --border: rgba(255, 255, 255, 0.08);
+
+  --font-display: 'Cabinet Grotesk', 'Inter', sans-serif;
+  --font-heading: var(--font-display);
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --content-max: 1400px;
+  --gutter: 2rem;
+  --grid-gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --gutter: 1.25rem;
+    --grid-gap: 1rem;
+  }
 }
 
 body {
-  font-family: 'Rajdhani', sans-serif;
-  background: var(--space-darker);
-  color: var(--space-white);
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Site-wide 12-column grid */
+.grid-12 {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+}
+
+.section-container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* Small uppercase mono label that sits above a section heading */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Carried over for the sections that haven't been redesigned yet */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 4rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title-number {
+  font-size: 0.5em;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
 }
 
 #root {
